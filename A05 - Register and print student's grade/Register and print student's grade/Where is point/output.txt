@@ -1,0 +1,21 @@
+Details of student 1:
+Student details:
+Name:Xiao
+Student Number:3
+Total:287
+Percentage:95.6667
+
+Details of student 2:
+Student details:
+Name:ming
+Student Number:44
+Total:36
+Percentage:12
+
+Details of student 3:
+Student details:
+Name:Xiaoming
+Student Number:30
+Total:666
+Total scores should be under 300!
+Percentage:222

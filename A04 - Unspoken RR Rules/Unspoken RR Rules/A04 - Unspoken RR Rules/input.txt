@@ -1,0 +1,6 @@
+5
+Iamthedog 3 2 35
+JELLYFISH 4 1 35
+Guiltyclown -1 12 30
+tentacle 20 8 99
+GM 999 100 1

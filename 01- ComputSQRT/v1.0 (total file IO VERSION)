@@ -1,0 +1,89 @@
+/* Name: Russell (Chumicat) (Li-Shuo ZENG)
+ * SID： B10332030
+ * Date: Feb. 28, 2018
+ * Last Update: Feb. 28, 2018
+ * Version: v1.0
+ * Problem statement: Compute square root of number from input file
+ * Reference:
+	https://dotblogs.com.tw/v6610688/2013/11/11/cplusplus_check_file_exist
+	https://dotblogs.com.tw/v6610688/2013/11/05/cplusplus_output_align_setw_set_field_width
+	http://en.cppreference.com/w/cpp/io/ios_base/setf
+	http://it-easy.tw/cout-float/
+ */
+
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <math.h>
+#define IFNAME "input.txt"
+#define OFNAME "output.txt"
+#define R1W 20
+#define R2W 20
+using std::ifstream;
+using std::ofstream;
+
+/* Babylonian algorithm */
+double sqrt2(double value) 
+{
+	double guess = value / 2;
+	while (true) {
+		double guess2 = (guess + value / guess) / 2;
+		if (fabs(guess2 - guess) < 0.01)
+			break;
+		else
+			guess = guess2;
+	}
+	return guess;
+}
+
+int main() 
+{
+	ifstream ifs;
+	ofstream ofs;
+	ifs.open(IFNAME);
+	ofs.open(OFNAME);
+	
+	/* Check if file exist */
+	if (!ifs) {
+		std::cout << "[文件不存在]\n";
+		system("pause");
+		return 0;
+	}
+	std::cout << "[讀取到文件]\n";
+
+	/* Set format and title of screen output */
+	std::cout.setf(std::ios::right);
+	std::cout << std::setw(R1W) << "Value" << std::setw(R2W) << "Sqrt" << std::endl;
+
+	/* Check if file end or not in a good format */
+	double value;
+	while (!ifs.eof()) {
+		ifs >> value;
+		if (ifs.bad()) { /* Bad file input */
+			std::cout << "[檔案損毀，中斷讀檔]\n";
+			break;
+		}
+		else if (ifs.fail()) { /* None real number input */
+			std::cout << "[非實數的輸入，中斷讀檔]\n";
+			break;
+		}
+		else if (value < 0){
+			std::cout << "[非正實數輸入，跳過該筆測資]\n";
+			continue;
+		} else { /* Correct input */
+			std::cout
+				<< std::fixed << std::setprecision(2) << std::setw(R1W) << value
+				<< std::fixed << std::setprecision(2) << std::setw(R2W) << sqrt2(value) << std::endl;
+			ofs << std::fixed << std::setprecision(2) << sqrt2(value) << std::endl;
+		}
+	}
+	
+	/* If end in correct */
+	if (ifs.eof())
+		std::cout << "[結束讀檔]\n";
+
+	ifs.close();
+	ofs.close();
+	system("pause");
+	return 0;
+}
