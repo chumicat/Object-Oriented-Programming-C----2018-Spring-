@@ -1,6 +1,10 @@
-/* 
- * 
- * reference:
+/* Name: Russell (Chumicat) (Li-Shuo ZENG)
+ * SID¡G B10332030
+ * Date: May. 1, 2018
+ * Last Update: May. 28, 2018
+ * Version: v1.0
+ * Problem statement:
+ * Reference:
  *  cpp-peglib: https://github.com/yhirose/cpp-peglib
  */
 
@@ -19,7 +23,7 @@ using namespace peg;
 using namespace std;
 //typedef LargeVar Ele;
 
-int main(){
+int main() {
 	Ele val;
 	string str;
 	//LargeInt a("4");
@@ -77,8 +81,30 @@ int main(){
 	//for (Ele a : lv)
 	//	cout << a << endl;
 
+	bool autoclear = false;
 	cout << "> ";
 	while (getline(cin, str)) {
+		/* catch command */
+		if (str == "cls" || str == "clear") {
+			system("cls");
+			cout << "> ";
+			continue;
+		} else if (str == "autocls" || str == "autoclear") {
+			system("cls");
+			cout << "> ";
+			autoclear = true;
+			continue;
+		} else if (str == "unautocls" || str == "unautoclear") {
+			autoclear = false;
+			cout << "> ";
+			continue;
+		}
+
+		if (autoclear) {
+			system("cls");
+			cout << "> " << str << endl;
+		}
+
 		/* Parsing */
 		bool toShow = ParserAll::parser_all(str, val);
 

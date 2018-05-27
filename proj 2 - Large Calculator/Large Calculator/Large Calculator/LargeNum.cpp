@@ -1,3 +1,13 @@
+/* Name: Russell (Chumicat) (Li-Shuo ZENG)
+ * SID¡G B10332030
+ * Date: May. 1, 2018
+ * Last Update: May. 28, 2018
+ * Version: v1.0
+ * Problem statement:
+ * Reference:
+ *  cpp-peglib: https://github.com/yhirose/cpp-peglib
+ */
+
 #include "LargeNum.h"
 #include "LargeVar.h"
 #include "Parser.h"
@@ -63,6 +73,13 @@ const LargeNum operator*(const LargeNum & lhs, const LargeNum & rhs)
 const LargeNum operator/(const LargeNum & lhs, const LargeNum & rhs)
 {
 	return LargeNum(lhs)/=rhs;
+}
+
+istream & operator >> (istream & input, LargeNum & rhs)
+{
+	string s;
+	getline(input, s);
+	rhs = s;
 }
 
 ostream & operator<<(ostream & output, const LargeNum & rhs)

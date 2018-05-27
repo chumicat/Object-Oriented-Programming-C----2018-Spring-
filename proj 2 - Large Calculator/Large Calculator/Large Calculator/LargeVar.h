@@ -1,4 +1,14 @@
 #pragma once
+/* Name: Russell (Chumicat) (Li-Shuo ZENG)
+ * SID¡G B10332030
+ * Date: May. 1, 2018
+ * Last Update: May. 28, 2018
+ * Version: v1.0
+ * Problem statement:
+ * Reference:
+ *  cpp-peglib: https://github.com/yhirose/cpp-peglib
+ */
+
 #include "LargeVar.h"
 #include "LargeInt.h"
 #include "LargeNum.h"

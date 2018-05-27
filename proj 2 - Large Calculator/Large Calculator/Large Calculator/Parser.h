@@ -1,5 +1,13 @@
 #pragma once
-
+/* Name: Russell (Chumicat) (Li-Shuo ZENG)
+ * SID¡G B10332030
+ * Date: May. 1, 2018
+ * Last Update: May. 28, 2018
+ * Version: v1.0
+ * Problem statement:
+ * Reference:
+ *  cpp-peglib: https://github.com/yhirose/cpp-peglib
+ */
 #include <algorithm>
 #include <iostream>
 #include <regex>
@@ -19,7 +27,7 @@ public:
 		regex numReg("[0-9]*['.']*[0-9]*");
 		regex idReg("[_A-Za-z][_A-Za-z0-9]*");
 		bool toShow = true;
-		unordered_map<string, Ele> variableMap;
+		static unordered_map<string, Ele> variableMap;
 
 		/* (1) Parsing rule */
 		parser parser(R"(
@@ -171,11 +179,11 @@ public:
 
 			}case 3: {/* "Set" TYPE IDSTR '=' EXPRESSION */
 					  /* Analysis and get id and value */
-				cout << sv.size() << endl;
-				cout << sv.c_str() << endl;
-				cout << sv[0].get<string>() << endl;
-				cout << sv[1].get<string>() << endl;
-				cout << sv[2].get<Ele>() << endl;
+				//cout << sv.size() << endl;
+				//cout << sv.c_str() << endl;
+				//cout << sv[0].get<string>() << endl;
+				//cout << sv[1].get<string>() << endl;
+				//cout << sv[2].get<Ele>() << endl;
 				size_t endIndex = sv[0].get<string>().find('=');
 				const string &s = sv[0].get<string>();
 				Ele value = sv[2].get<Ele>();

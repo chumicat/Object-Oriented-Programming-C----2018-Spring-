@@ -1,8 +1,15 @@
 #pragma once
-//#ifndef LARGEINT_H
-//#define LARGEINT_H
-// https://www.ptt.cc/man/C_and_CPP/D8D2/DA94/DDBB/M.1127480887.A.E7F.html
-// https://stackoverflow.com/questions/34593263/c-overloading-operator
+/* Name: Russell (Chumicat) (Li-Shuo ZENG)
+ * SID¡G B10332030
+ * Date: May. 1, 2018
+ * Last Update: May. 28, 2018
+ * Version: v1.0
+ * Problem statement:
+ * Reference:
+ *  cpp-peglib: https://github.com/yhirose/cpp-peglib 
+ *	https://www.ptt.cc/man/C_and_CPP/D8D2/DA94/DDBB/M.1127480887.A.E7F.html
+ *	https://stackoverflow.com/questions/34593263/c-overloading-operator
+ */
 
 #include <algorithm>
 #include <cctype>
@@ -12,7 +19,6 @@
 #include <regex>
 #include <string>
 #include <vector>
-#include "LargeBase.h"
 #define vecDigCosIt vector<Digit>::const_iterator
 typedef signed char Digit;
 
@@ -27,7 +33,7 @@ using std::vector;
 class LargeNum;
 class LargeVar;
 class ParserAll;
-class LargeInt:public LargeBase {
+class LargeInt {
 private:
 	/* Member */
 	bool sign;
@@ -82,7 +88,7 @@ public:
 	const bool operator!= (const LargeNum & rhs) const;
 	Digit & operator[](size_t index);
 	const size_t operator[](size_t index) const;
-	//friend istream & operator>> (istream & input, const LargeInt & rhs);
+	friend istream & operator>> (istream & input, LargeInt & rhs);
 	friend ostream & operator<<(ostream & output, const LargeInt & rhs);
 
 	/* Get and Set Function */
@@ -115,4 +121,3 @@ public:
 	long long int toInt64() const;
 	string toString() const;
 };
-//#endif // LARGEINT_H

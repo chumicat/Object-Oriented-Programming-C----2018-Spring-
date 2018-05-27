@@ -1,3 +1,15 @@
+/* Name: Russell (Chumicat) (Li-Shuo ZENG)
+ * SID¡G B10332030
+ * Date: May. 1, 2018
+ * Last Update: May. 28, 2018
+ * Version: v1.0
+ * Problem statement:
+ * Reference:
+ *  cpp-peglib: https://github.com/yhirose/cpp-peglib 
+ *	https://www.ptt.cc/man/C_and_CPP/D8D2/DA94/DDBB/M.1127480887.A.E7F.html
+ *	https://stackoverflow.com/questions/34593263/c-overloading-operator
+ */
+
 #include "LargeInt.h"
 #include "LargeNum.h"
 #include "LargeVar.h"
@@ -314,6 +326,13 @@ const LargeInt operator/(const LargeInt & lhs, const LargeInt & rhs)
 const LargeInt operator%(const LargeInt & lhs, const LargeInt & rhs)
 {
 	return LargeInt(lhs) %= rhs;
+}
+
+istream & operator >> (istream & input, LargeInt & rhs)
+{
+	string s;
+	getline(input, s);
+	rhs = s;
 }
 
 ostream & operator<<(ostream & output, const LargeInt & rhs)

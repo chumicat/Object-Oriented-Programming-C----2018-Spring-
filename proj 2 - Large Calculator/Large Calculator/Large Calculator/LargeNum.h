@@ -1,6 +1,13 @@
 #pragma once
-//#ifndef LARGENUM_H
-//#define LARGENUM_H
+/* Name: Russell (Chumicat) (Li-Shuo ZENG)
+ * SID¡G B10332030
+ * Date: May. 1, 2018
+ * Last Update: May. 28, 2018
+ * Version: v1.0
+ * Problem statement:
+ * Reference:
+ *  cpp-peglib: https://github.com/yhirose/cpp-peglib
+ */
 #include <assert.h>
 #include <algorithm>
 #include <iomanip>
@@ -11,14 +18,13 @@
 #include <string>
 #include <utility>
 #include "LargeInt.h"
-#include "LargeBase.h"
 
 //using namespace std;
 using namespace std;
 class LargeInt;
 class LargeVar;
 class ParserAll;
-class LargeNum: public LargeBase {
+class LargeNum {
 private:
 	/* Member */
 	pair<LargeInt, LargeInt> value; // first = molecular, second = denominator
@@ -63,7 +69,7 @@ public:
 	const bool operator!= (const LargeNum & rhs) const;
 	Digit & operator[](size_t index);
 	const size_t operator[](size_t index) const;
-	//friend istream & operator>> (istream & input, const LargeNum & rhs);
+	friend istream & operator>> (istream & input, LargeNum & rhs);
 	friend ostream & operator<<(ostream & output, const LargeNum & rhs);
 
 	void setNum(string s);
@@ -82,4 +88,3 @@ public:
 	string toString() const;
 	string toDivString() const;
 };
-//#endif //LARGENUM_H

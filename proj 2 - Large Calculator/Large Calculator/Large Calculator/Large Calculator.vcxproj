@@ -152,7 +152,6 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LargeBase.h" />
     <ClInclude Include="LargeInt.h" />
     <ClInclude Include="LargeNum.h" />
     <ClInclude Include="LargeVar.h" />
