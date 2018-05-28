@@ -333,6 +333,7 @@ istream & operator >> (istream & input, LargeInt & rhs)
 	string s;
 	getline(input, s);
 	rhs = s;
+	return input;
 }
 
 ostream & operator<<(ostream & output, const LargeInt & rhs)

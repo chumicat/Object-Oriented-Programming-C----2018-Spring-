@@ -47,11 +47,13 @@ public:
 	LargeVar(const LargeVar &rhs);
 	LargeVar(int i);
 	LargeVar(double d);
+	LargeVar(string s);
 	LargeVar & operator= (const LargeInt & rhs);
 	LargeVar & operator= (const LargeNum & rhs);
 	LargeVar & operator= (const LargeVar & rhs);
 	LargeVar & operator= (int i);
 	LargeVar & operator= (double d);
+	LargeVar & operator= (string s);
 	const LargeVar operator-() const;
 	friend const LargeVar operator+ (const LargeVar & lhs, const LargeVar & rhs);
 	friend const LargeVar operator- (const LargeVar & lhs, const LargeVar & rhs);
@@ -70,6 +72,7 @@ public:
 	const bool operator== (const LargeVar & rhs) const;
 	const bool operator!= (const LargeVar & rhs) const;
 	friend ostream & operator<<(ostream & output, const LargeVar & rhs);
+	friend istream & operator>>(istream & input, LargeVar & rhs);
 	void setInt( string s);
 	void setNum( string s);
 	void setToInt();

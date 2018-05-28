@@ -39,6 +39,11 @@ LargeVar::LargeVar(double d)
 	*this = d;
 }
 
+LargeVar::LargeVar(string s)
+{
+	*this = s;
+}
+
 LargeVar & LargeVar::operator=(const LargeInt & rhs)
 {
 	isInt = true;
@@ -74,6 +79,15 @@ LargeVar & LargeVar::operator=(int i)
 LargeVar & LargeVar::operator=(double d)
 {
 	*this = LargeNum(d);
+	return *this;
+}
+
+LargeVar & LargeVar::operator=(string s)
+{
+	if (this->isInt)
+		this->i = s;
+	else
+		this->n = s;
 	return *this;
 }
 
@@ -265,5 +279,12 @@ ostream & operator<<(ostream & output, const LargeVar & rhs)
 		return output << rhs.i;
 	else
 		return output << rhs.n;
-	return output;
+}
+
+istream & operator >> (istream & input, LargeVar & rhs)
+{
+	string s;
+	getline(input, s);
+	rhs = s;
+	return input;
 }
