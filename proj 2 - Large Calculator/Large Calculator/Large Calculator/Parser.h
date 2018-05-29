@@ -38,7 +38,7 @@ public:
 		LV4				<-	LV3 LV3_OP*
 		LV3				<-	LV2_OP* LV2
 		LV2				<-	'(' EXPRESSION ')' / IDVAL /  NUMBER 
-		TYPE			<-	"Interger" / "Decimal"
+		TYPE			<-	"Integer" / "Decimal"
         LV6_OP			<-	[-+]
         LV5_OP			<-	[/*]
 		LV4_OP			<-	[^]
