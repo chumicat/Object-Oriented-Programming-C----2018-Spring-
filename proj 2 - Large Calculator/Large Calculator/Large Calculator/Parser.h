@@ -38,7 +38,7 @@ public:
 		LV4				<-	LV3 LV3_OP*
 		LV3				<-	LV2_OP* LV2
 		LV2				<-	'(' EXPRESSION ')' / IDVAL /  NUMBER 
-		TYPE			<-	["Interger""Decimal"]
+		TYPE			<-	"Interger" / "Decimal"
         LV6_OP			<-	[-+]
         LV5_OP			<-	[/*]
 		LV4_OP			<-	[^]
@@ -52,7 +52,7 @@ public:
 
 		/* (2) Parsing action */
 		auto return_char = [](const SemanticValues& sv) -> char { return static_cast<char>(*sv.c_str()); };
-		auto return_string = [](const SemanticValues& sv) ->string {return string(sv.c_str()); };
+		auto return_token = [](const SemanticValues& sv) { return sv.token(); };
 		auto binary_leftToRight = [&](const SemanticValues& sv) -> Ele {
 			auto result = sv[0].get<Ele>();
 			for (size_t i = 1u; i < sv.size(); i += 2) {
@@ -164,10 +164,8 @@ public:
 
 			case 2: {/* IDSTR '=' EXPRESSION */
 					 /* Analysis and get id and value */
-				size_t endIndex = sv[0].get<string>().find('=');
-				const string &s = sv[0].get<string>();
+				const string id = sv[0].get<string>();
 				Ele value = sv[1].get<Ele>();
-				string id(s.begin(), s.begin() + endIndex);
 
 				/* Assign value */
 				if (variableMap.count(id)) {
@@ -184,18 +182,14 @@ public:
 				//cout << sv[0].get<string>() << endl;
 				//cout << sv[1].get<string>() << endl;
 				//cout << sv[2].get<Ele>() << endl;
-				size_t endIndex = sv[0].get<string>().find('=');
-				const string &s = sv[0].get<string>();
 				Ele value = sv[2].get<Ele>();
-				string id;
-				if (s.find("Interger") != string::npos) {
-					id = string(s.begin() + 8, s.begin() + endIndex);
+				const string s = sv[0].get<string>();
+				const string id = sv[1].get<string>();
+				if (s == "Interger")
 					value.setToInt();
-				}
-				else if (s.find("Decimal") != string::npos) {
-					id = string(s.begin() + 7, s.begin() + endIndex);
+				else
 					value.setToNum();
-				}
+
 				/* Declared id and assign value */
 				variableMap.erase(id);
 				variableMap.emplace(id, value);
@@ -211,7 +205,7 @@ public:
 		parser["LV5"] = binary_rightToLeft;
 		parser["LV4"] = unary_leftToRight;
 		parser["LV3"] = unary_rightToLeft;
-		parser["TYPE"] = return_string;
+		parser["TYPE"] = return_token;
 		parser["LV6_OP"] = return_char;
 		parser["LV5_OP"] = return_char;
 		parser["LV4_OP"] = return_char;
@@ -219,7 +213,7 @@ public:
 		parser["LV2_OP"] = return_char;
 		parser["NUMBER"] = num_deal;
 		parser["IDVAL"] = id_deal;
-		parser["IDSTR"] = return_string;
+		parser["IDSTR"] = return_token;
 
 		/* (4) Parse style */
 		parser.enable_packrat_parsing(); // Enable packrat parsing.		/* Delete every space in input */
