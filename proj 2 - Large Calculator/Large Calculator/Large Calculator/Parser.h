@@ -32,22 +32,22 @@ public:
 		/* (1) Parsing rule */
 		parser parser(R"(
 		ASSIGN			<-	"Set" TYPE IDSTR '=' EXPRESSION / IDSTR '=' EXPRESSION / EXPRESSION
-        EXPRESSION		<-	LV6 (LV6_OP LV6)*
-        LV6				<-	LV5 (LV5_OP LV5)*
-        LV5				<-	LV4 (LV4_OP LV4)*
+		EXPRESSION		<-	LV6 (LV6_OP LV6)*
+		LV6				<-	LV5 (LV5_OP LV5)*
+		LV5				<-	LV4 (LV4_OP LV4)*
 		LV4				<-	LV3 LV3_OP*
 		LV3				<-	LV2_OP* LV2
 		LV2				<-	'(' EXPRESSION ')' / IDVAL /  NUMBER 
 		TYPE			<-	"Integer" / "Decimal"
-        LV6_OP			<-	[-+]
-        LV5_OP			<-	[/*]
+		LV6_OP			<-	[-+]
+		LV5_OP			<-	[/*]
 		LV4_OP			<-	[^]
 		LV3_OP			<-	[!]
 		LV2_OP			<-	[-+]
-        NUMBER			<-	[0-9]*["."]*[0-9]* / [0]
+		NUMBER			<-	[0-9]*["."]*[0-9]* / [0]
 		IDVAL			<-	[_A-Za-z][_A-Za-z0-9]*
 		IDSTR			<-	[_A-Za-z][_A-Za-z0-9]*
-        %whitespace		<-	[ \t\r\n]*
+		%whitespace		<-	[ \t\r\n]*
     )");
 
 		/* (2) Parsing action */
