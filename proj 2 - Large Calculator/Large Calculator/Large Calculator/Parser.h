@@ -185,7 +185,7 @@ public:
 				Ele value = sv[2].get<Ele>();
 				const string s = sv[0].get<string>();
 				const string id = sv[1].get<string>();
-				if (s == "Interger")
+				if (s == "Integer")
 					value.setToInt();
 				else
 					value.setToNum();
